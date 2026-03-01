@@ -83,6 +83,35 @@
       text-align: center;
     }
 
+    .tabs {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 0 auto var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      border: 1px solid #38465d;
+      background: #151e2b;
+      color: #dfe7f5;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 640;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: #223148;
+      border-color: #5b7193;
+      color: #f1f6ff;
+    }
+
+    .tab-content.hidden {
+      display: none;
+    }
+
     .panel {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -218,6 +247,110 @@
       text-align: center;
     }
 
+    .darkside-wrap {
+      background: radial-gradient(980px 520px at 15% -25%, #2a0a14 0%, #090a0d 56%);
+      border: 1px solid #8a2f4b;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.55);
+    }
+
+    .darkside-warning {
+      margin-bottom: var(--space-3);
+      border: 1px solid #cb4369;
+      background: linear-gradient(180deg, #62172f 0%, #3f0f21 100%);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .darkside-warning-title {
+      margin: 0 0 8px;
+      font-size: 1.02rem;
+      font-weight: 760;
+      letter-spacing: 0.35px;
+      color: #ffe3ec;
+      text-transform: uppercase;
+    }
+
+    .darkside-warning-text {
+      margin: 0;
+      color: #ffe9f0;
+      font-size: 0.93rem;
+      line-height: 1.5;
+      font-weight: 610;
+    }
+
+    .darkside-panel {
+      border: 1px solid #9a3a5f;
+      background: linear-gradient(180deg, #1f1319 0%, #101217 100%);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .darkside-title {
+      margin: 0 0 10px;
+      font-size: 1.04rem;
+      color: #ffccd9;
+      font-weight: 790;
+      text-align: center;
+      letter-spacing: 0.35px;
+    }
+
+    .darkside-text {
+      margin: 0 auto;
+      max-width: 920px;
+      color: #fff1f6;
+      font-size: 1.14rem;
+      line-height: 1.66;
+      text-align: center;
+      font-weight: 760;
+    }
+
+    .darkside-context {
+      margin-top: 14px;
+      border: 1px solid #5e6c34;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #141912 0%, #10140f 100%);
+      padding: 12px;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(120px, 1fr));
+      gap: 10px;
+      text-align: center;
+    }
+
+    .darkside-context .item {
+      background: #121616;
+      border: 1px solid #3f4a2e;
+      border-radius: 10px;
+      padding: 9px 8px;
+    }
+
+    .darkside-context .label {
+      font-size: 0.72rem;
+      color: #c2c9a4;
+      text-transform: uppercase;
+      letter-spacing: 0.35px;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .darkside-context .value {
+      font-size: 0.92rem;
+      color: #eff7d3;
+      font-weight: 730;
+    }
+
+    .bias-on {
+      color: #9dff92 !important;
+    }
+
+    .bias-off {
+      color: #ffb25e !important;
+    }
+
+    .bias-neutral {
+      color: #f8dc7e !important;
+    }
+
     .charts-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -294,6 +427,9 @@
       .chart-wrap {
         height: 200px;
       }
+      .darkside-context {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
@@ -306,6 +442,12 @@
       <div class="error-banner" id="errorBanner">Unable to load snapshot</div>
     </header>
 
+    <nav class="tabs" aria-label="Dashboard Mode Tabs">
+      <button class="tab-btn active" id="tabBtnTruth" type="button">Truth Mode</button>
+      <button class="tab-btn" id="tabBtnDarkSide" type="button">🔥 The Dark Side</button>
+    </nav>
+
+    <div class="tab-content" id="tabTruth">
     <section class="panel" aria-label="Regime Status">
       <h2>Status</h2>
       <div class="status-banner">
@@ -393,6 +535,43 @@
     <footer class="footer">
       This dashboard is informational only and not trading advice.
     </footer>
+    </div>
+
+    <div class="tab-content hidden" id="tabDarkSide">
+      <section class="panel darkside-wrap" aria-label="Dark Side Mode">
+        <div class="darkside-warning">
+          <p class="darkside-warning-title">⚠️ FICTIONAL FINANCIAL ADVICE — ENTERTAINMENT MODE ⚠️</p>
+          <p class="darkside-warning-text">This content is exaggerated, theatrical, and role-play.<br/>It is NOT real financial advice.<br/>It does NOT reflect OpenSmusse logic or behavior.</p>
+        </div>
+
+        <article class="darkside-panel">
+          <h2 class="darkside-title">CottonCandy — Dark Side Edition</h2>
+          <p class="darkside-text" id="darkSideValue">Dark Side mode is warming up the desk call...</p>
+          <div class="darkside-context" aria-label="Dark Side Context Strip">
+            <div class="item">
+              <div class="label">Regime</div>
+              <div class="value" id="darkRegime">—</div>
+            </div>
+            <div class="item">
+              <div class="label">Open Interest</div>
+              <div class="value" id="darkOi">—</div>
+            </div>
+            <div class="item">
+              <div class="label">Funding</div>
+              <div class="value" id="darkFunding">—</div>
+            </div>
+            <div class="item">
+              <div class="label">Liquidations</div>
+              <div class="value" id="darkLiq">—</div>
+            </div>
+            <div class="item">
+              <div class="label">Bias</div>
+              <div class="value" id="darkBias">—</div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
@@ -422,6 +601,7 @@
     let chartFundingRate = null;
     let chartLongShort = null;
     let chartLiquidations = null;
+    let activeTab = 'truth';
 
     function formatMontrealTime(value) {
       const d = new Date(value);
@@ -452,6 +632,21 @@
     function normalize(text) {
       if (typeof text !== 'string' || text.length === 0) return '—';
       return text.replace(/_/g, ' ');
+    }
+
+    function switchTab(tab) {
+      activeTab = tab === 'dark' ? 'dark' : 'truth';
+      const truth = document.getElementById('tabTruth');
+      const dark = document.getElementById('tabDarkSide');
+      const btnTruth = document.getElementById('tabBtnTruth');
+      const btnDark = document.getElementById('tabBtnDarkSide');
+      if (!truth || !dark || !btnTruth || !btnDark) return;
+
+      const showDark = activeTab === 'dark';
+      truth.classList.toggle('hidden', showDark);
+      dark.classList.toggle('hidden', !showDark);
+      btnTruth.classList.toggle('active', !showDark);
+      btnDark.classList.toggle('active', showDark);
     }
 
     function buildNarrativeStructuralRead(structure, fallbackText) {
@@ -495,38 +690,33 @@
       return `${participation} ${pressure}, ${liquidationContext} ${implication}`;
     }
 
-    function parseLongShortBias(longShortText) {
+    function darkVolatilityState(snapshot) {
+      const prices = asNumberArray((snapshot.history || {}).price);
+      if (prices.length < 6) return 'normal';
+      const recent = prices.slice(-6);
+      const avg = recent.reduce((a, b) => a + b, 0) / recent.length;
+      if (!Number.isFinite(avg) || avg <= 0) return 'normal';
+      const max = Math.max(...recent);
+      const min = Math.min(...recent);
+      const pct = ((max - min) / avg) * 100;
+      if (pct >= 1.4) return 'elevated';
+      if (pct <= 0.5) return 'compressed';
+      return 'normal';
+    }
+
+    function darkCrowdingState(longShortText) {
       if (typeof longShortText !== 'string') return 'balanced';
-      const m = longShortText.match(/(\\d+(?:\\.\\d+)?)%\\s*long\\s*\\/\\s*(\\d+(?:\\.\\d+)?)%\\s*short/i);
+      const m = longShortText.match(/(\d+(?:\.\d+)?)%\s*long\s*\/\s*(\d+(?:\.\d+)?)%\s*short/i);
       if (!m) return 'balanced';
       const longPct = Number(m[1]);
       const shortPct = Number(m[2]);
       if (!Number.isFinite(longPct) || !Number.isFinite(shortPct)) return 'balanced';
       const diff = longPct - shortPct;
-      if (diff >= 20) return 'side-a-crowded';
-      if (diff <= -20) return 'side-b-crowded';
+      if (diff >= 20 || diff <= -20) return 'imbalanced';
       return 'balanced';
     }
 
-    function deriveVolatilityContext(snapshot) {
-      const history = snapshot && snapshot.history ? snapshot.history : null;
-      if (!history || !Array.isArray(history.price) || history.price.length < 6) {
-        return 'normal';
-      }
-      const prices = history.price.map(v => Number(v)).filter(v => Number.isFinite(v));
-      if (prices.length < 6) return 'normal';
-      const recent = prices.slice(-6);
-      const avg = recent.reduce((a, b) => a + b, 0) / recent.length;
-      const max = Math.max(...recent);
-      const min = Math.min(...recent);
-      if (avg <= 0) return 'normal';
-      const rangePct = ((max - min) / avg) * 100;
-      if (rangePct >= 1.4) return 'elevated';
-      if (rangePct <= 0.5) return 'compressed';
-      return 'normal';
-    }
-
-    function buildCottonCandyPocket(snapshot) {
+    function buildDarkSideCommentary(snapshot) {
       const structure = snapshot.marketStructure || {};
       const regime = (snapshot.regime || 'UNKNOWN').toUpperCase();
       const quality = (snapshot.transitionQuality || 'NEUTRAL').toUpperCase();
@@ -534,63 +724,44 @@
       const funding = (structure.funding || 'neutral').toLowerCase();
       const orderbook = (structure.orderbook || 'balanced').toLowerCase();
       const liquidations = (structure.liquidations || 'balanced').toLowerCase();
-      const lsBias = parseLongShortBias(structure.longShort);
-      const vol = deriveVolatilityContext(snapshot);
+      const vol = darkVolatilityState(snapshot);
+      const crowding = darkCrowdingState(structure.longShort || '');
 
-      const lessonContext = (() => {
-        if (regime === 'TREND_EXPANSION' && quality === 'HIGH') {
-          return 'Lesson context: this is a directional environment with relatively coherent structure, so observation quality is usually high.';
-        }
-        if (regime === 'CHOP' || vol === 'compressed') {
-          return 'Lesson context: this is a rotational environment where structure often develops slowly and clarity can lag.';
-        }
-        if (quality === 'LOW' || funding === 'extreme') {
-          return 'Lesson context: this is a fragile environment where surface movement can look clear while underlying structure stays mixed.';
-        }
-        return 'Lesson context: this is a mixed environment where context matters more than isolated signals.';
-      })();
+      if (regime === 'TREND_EXPANSION' && oi === 'rising' && quality === 'HIGH') {
+        return 'This chart wants higher and the tape is proving it. Participation is expanding with structure still holding trend expansion, so this is bullish until the market says otherwise. I would long this on pullbacks and keep pressing the momentum. Breakout energy stays in charge.';
+      }
+      if (liquidations !== 'balanced' && vol === 'elevated' && (oi === 'flat' || oi === 'falling')) {
+        return 'This is a classic liquidation-driven squeeze phase. Speed is loud, structure is aggressive, and this looks like a short squeeze setup with panic fuel in the move. I would still call this bullish while forced flow keeps clearing levels. Target is higher until that pressure cools down.';
+      }
+      if ((funding === 'elevated' || funding === 'extreme') && crowding === 'imbalanced') {
+        return 'Crowding is obvious and this tape is no longer neutral. One side is overloaded, so any trigger can launch a sharp repricing and this is exactly where desk calls get loud. I would pick the direction of pressure and run with it. This level should hold while crowding stays this stretched.';
+      }
+      if (regime === 'CHOP' && orderbook === 'balanced' && liquidations === 'balanced' && oi !== 'rising') {
+        return 'This range is pure pressure-cooker behavior and it is not staying quiet forever. The market is compressing in plain sight, and breakout confirmed is the only script that makes sense after this kind of stall. I would enter on pullback after the first hard push. This chart is loading for violence.';
+      }
+      if (regime === 'TREND_EXPANSION' && quality === 'LOW' && oi !== 'rising') {
+        return 'This expansion is loud but structurally thin, and that often flips fast. I read this as a trap-prone move where conviction is mostly visual and not paid for by participation. I would fade overstretched pops and respect abrupt reversals. Bearish pressure can take this back quickly.';
+      }
+      return 'Signals are mixed but the tape is still tradable if you embrace conviction. This is one of those sessions where decisive calls beat overthinking, and the desk tone stays aggressive either way. I would keep bias clear and react fast around key levels. The chart wants a winner and a loser before this settles.';
+    }
 
-      const keyObservationA = (() => {
-        const oiClause =
-          oi === 'rising'
-            ? 'Participation is expanding through rising open interest'
-            : oi === 'falling'
-              ? 'Participation is easing through falling open interest'
-              : 'Participation is broadly steady';
-        const orderbookClause =
-          orderbook === 'bid-heavy'
-            ? 'orderbook pressure leans one way'
-            : orderbook === 'ask-heavy'
-              ? 'orderbook pressure leans the other way'
-              : 'orderbook pressure remains balanced';
-        return `Key observation: ${oiClause}, and ${orderbookClause}.`;
-      })();
-
-      const keyObservationB = (() => {
-        const crowdClause =
-          lsBias === 'side-a-crowded'
-            ? 'Crowding looks one-sided'
-            : lsBias === 'side-b-crowded'
-              ? 'Crowding also looks one-sided'
-              : 'Crowding appears more evenly distributed';
-        const liqClause =
-          liquidations === 'longs dominant' || liquidations === 'shorts dominant'
-            ? 'forced-flow activity is imbalanced'
-            : 'forced-flow activity is balanced';
-        return `Experienced traders often notice that ${crowdClause.toLowerCase()} and ${liqClause}; this tends to matter because unstable structure can reshape sentiment quickly.`;
-      })();
-
-      const mentorReminder = (() => {
-        if (quality === 'LOW' || vol === 'elevated') {
-          return 'Mentor reminder: many traders learn to keep interpretation simple when structure is noisy, because patience protects decision quality.';
-        }
-        if (quality === 'HIGH' && regime !== 'CHOP') {
-          return 'Mentor reminder: many traders learn to stay process-focused, since consistent interpretation usually matters more than dramatic narratives.';
-        }
-        return 'Mentor reminder: this is usually where patience comes in, with discipline centered on context, clarity, and emotional steadiness.';
-      })();
-
-      return `${lessonContext} ${keyObservationA} ${keyObservationB} ${mentorReminder}`;
+    function buildDarkBias(snapshot) {
+      const structure = snapshot.marketStructure || {};
+      const regime = (snapshot.regime || 'UNKNOWN').toUpperCase();
+      const oi = (structure.openInterest || 'flat').toLowerCase();
+      const funding = (structure.funding || 'neutral').toLowerCase();
+      const liq = (structure.liquidations || 'balanced').toLowerCase();
+      if (
+        regime === 'TREND_EXPANSION' &&
+        oi === 'rising' &&
+        (liq === 'shorts dominant' || funding === 'neutral')
+      ) {
+        return 'RISK-ON';
+      }
+      if (liq === 'longs dominant' || (funding === 'extreme' && oi !== 'rising')) {
+        return 'RISK-OFF';
+      }
+      return 'STANDOFF';
     }
 
     function setErrorState(show) {
@@ -860,7 +1031,24 @@
         structure,
         snapshot.structuralRead || 'No structural read available.'
       );
-      document.getElementById('cottonPocketValue').textContent = buildCottonCandyPocket(snapshot);
+      document.getElementById('cottonPocketValue').textContent =
+        typeof snapshot.cottonCandyPocket === 'string' && snapshot.cottonCandyPocket.trim().length > 0
+          ? snapshot.cottonCandyPocket
+          : 'CottonCandy-Pocket commentary is unavailable at the moment.';
+      document.getElementById('darkSideValue').textContent = buildDarkSideCommentary(snapshot);
+      document.getElementById('darkRegime').textContent = normalize(snapshot.regime);
+      document.getElementById('darkOi').textContent = normalize(structure.openInterest);
+      document.getElementById('darkFunding').textContent = normalize(structure.funding);
+      document.getElementById('darkLiq').textContent = normalize(structure.liquidations);
+      const bias = buildDarkBias(snapshot);
+      const biasEl = document.getElementById('darkBias');
+      if (biasEl) {
+        biasEl.textContent = bias;
+        biasEl.classList.remove('bias-on', 'bias-off', 'bias-neutral');
+        if (bias === 'RISK-ON') biasEl.classList.add('bias-on');
+        else if (bias === 'RISK-OFF') biasEl.classList.add('bias-off');
+        else biasEl.classList.add('bias-neutral');
+      }
 
       renderCharts(snapshot);
     }
@@ -883,6 +1071,8 @@
 
     loadSnapshot();
     setInterval(loadSnapshot, 60_000);
+    document.getElementById('tabBtnTruth')?.addEventListener('click', () => switchTab('truth'));
+    document.getElementById('tabBtnDarkSide')?.addEventListener('click', () => switchTab('dark'));
   </script>
 </body>
 </html>
