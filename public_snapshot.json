@@ -1,3 +1,15 @@
 {
-  "status": "waiting for OpenSmusse data"
+  "bot": "OpenSmusse",
+  "symbol": "SOLUSDT",
+  "updatedAt": "2026-03-01T15:07:21.928Z",
+  "marketStructure": {
+    "openInterest": "flat",
+    "funding": "neutral",
+    "longShort": "N/A",
+    "orderbook": "balanced",
+    "liquidations": "balanced"
+  },
+  "structuralRead": "open interest is flat; orderbook is balanced; funding is neutral; liquidations are balanced.",
+  "regime": "UNKNOWN",
+  "transitionQuality": "NEUTRAL"
 }
