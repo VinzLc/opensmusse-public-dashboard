@@ -196,6 +196,28 @@
       text-align: center;
     }
 
+    .cotton-panel {
+      padding: 20px;
+      border: 1px solid #3f4960;
+      background: linear-gradient(180deg, #1a2233 0%, #171f2f 100%);
+    }
+
+    .cotton-text {
+      margin: 0;
+      font-size: 1.03rem;
+      color: #e9eff9;
+      line-height: 1.62;
+      text-align: left;
+    }
+
+    .cotton-disclaimer {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      border-top: 1px solid #313c51;
+      padding-top: 10px;
+    }
+
     .charts-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -323,6 +345,12 @@
     <section class="panel read-panel" aria-label="Structural Read">
       <h2>Structural Read</h2>
       <p class="read-text" id="structuralReadValue">Loading deterministic structural read...</p>
+    </section>
+
+    <section class="panel cotton-panel" aria-label="CottonCandy Take">
+      <h2>🧁 CottonCandy’s Take</h2>
+      <p class="cotton-text" id="cottonTakeValue">CottonCandy is reading the tape and preparing a calm market note...</p>
+      <p class="cotton-disclaimer">Entertainment-only market commentary. Not trading advice.</p>
     </section>
 
     <section class="panel" aria-label="Market Structure Charts">
@@ -465,6 +493,107 @@
       }
 
       return `${participation} ${pressure}, ${liquidationContext} ${implication}`;
+    }
+
+    function parseLongShortBias(longShortText) {
+      if (typeof longShortText !== 'string') return 'balanced';
+      const m = longShortText.match(/(\\d+(?:\\.\\d+)?)%\\s*long\\s*\\/\\s*(\\d+(?:\\.\\d+)?)%\\s*short/i);
+      if (!m) return 'balanced';
+      const longPct = Number(m[1]);
+      const shortPct = Number(m[2]);
+      if (!Number.isFinite(longPct) || !Number.isFinite(shortPct)) return 'balanced';
+      const diff = longPct - shortPct;
+      if (diff >= 20) return 'long-crowded';
+      if (diff <= -20) return 'short-crowded';
+      return 'balanced';
+    }
+
+    function deriveVolatilityContext(snapshot) {
+      const history = snapshot && snapshot.history ? snapshot.history : null;
+      if (!history || !Array.isArray(history.price) || history.price.length < 6) {
+        return 'normal';
+      }
+      const prices = history.price.map(v => Number(v)).filter(v => Number.isFinite(v));
+      if (prices.length < 6) return 'normal';
+      const recent = prices.slice(-6);
+      const avg = recent.reduce((a, b) => a + b, 0) / recent.length;
+      const max = Math.max(...recent);
+      const min = Math.min(...recent);
+      if (avg <= 0) return 'normal';
+      const rangePct = ((max - min) / avg) * 100;
+      if (rangePct >= 1.4) return 'elevated';
+      if (rangePct <= 0.5) return 'compressed';
+      return 'normal';
+    }
+
+    function buildCottonCandyTake(snapshot) {
+      const structure = snapshot.marketStructure || {};
+      const regime = (snapshot.regime || 'UNKNOWN').toUpperCase();
+      const quality = (snapshot.transitionQuality || 'NEUTRAL').toUpperCase();
+      const oi = (structure.openInterest || 'flat').toLowerCase();
+      const funding = (structure.funding || 'neutral').toLowerCase();
+      const orderbook = (structure.orderbook || 'balanced').toLowerCase();
+      const liquidations = (structure.liquidations || 'balanced').toLowerCase();
+      const lsBias = parseLongShortBias(structure.longShort);
+      const vol = deriveVolatilityContext(snapshot);
+
+      let mood = 'calm';
+      if (quality === 'LOW' || funding === 'extreme') {
+        mood = 'fragile';
+      } else if (regime === 'TREND_EXPANSION' && quality === 'HIGH') {
+        mood = 'energetic';
+      } else if (orderbook !== 'balanced' || liquidations !== 'balanced' || vol === 'elevated') {
+        mood = 'restless';
+      } else if (regime === 'CHOP' && vol === 'compressed') {
+        mood = 'calm';
+      }
+
+      const moodSentence =
+        mood === 'energetic'
+          ? 'The tape feels energetic today, with structure showing active intent.'
+          : mood === 'fragile'
+            ? 'The tape feels fragile right now, with conviction still uneven.'
+            : mood === 'restless'
+              ? 'The tape feels restless, with pressure pockets appearing but not fully resolving.'
+              : 'The tape feels calm, with no clear structural urgency.';
+
+      const participationSentence =
+        oi === 'rising'
+          ? 'Participation is building as open interest rises, which usually reflects fresh engagement.'
+          : oi === 'falling'
+            ? 'Participation is easing as open interest falls, suggesting reduced commitment from new positioning.'
+            : 'Participation is steady, with open interest not expanding meaningfully.';
+
+      const pressureSentence = (() => {
+        const orderbookClause =
+          orderbook === 'bid-heavy'
+            ? 'Orderbook pressure leans to bids'
+            : orderbook === 'ask-heavy'
+              ? 'Orderbook pressure leans to asks'
+              : 'Orderbook pressure is balanced';
+        const liqClause =
+          liquidations === 'longs dominant'
+            ? 'and long-side liquidations are the dominant forced flow'
+            : liquidations === 'shorts dominant'
+              ? 'and short-side liquidations are the dominant forced flow'
+              : 'and forced liquidations remain balanced';
+        const crowdClause =
+          lsBias === 'long-crowded'
+            ? ', with long positioning noticeably crowded.'
+            : lsBias === 'short-crowded'
+              ? ', with short positioning noticeably crowded.'
+              : ', with positioning broadly two-sided.';
+        return `${orderbookClause}, ${liqClause}${crowdClause}`;
+      })();
+
+      const mindsetSentence =
+        quality === 'HIGH' && regime !== 'CHOP'
+          ? 'CottonCandy’s mindset: stay disciplined and let clear structure speak before drawing strong conclusions.'
+          : quality === 'LOW' || mood === 'fragile'
+            ? 'CottonCandy’s mindset: stay patient, protect mental bandwidth, and wait for cleaner confirmation.'
+            : 'CottonCandy’s mindset: stay calm, keep context first, and avoid forcing a narrative.';
+
+      return `${moodSentence} ${participationSentence} ${pressureSentence} ${mindsetSentence}`;
     }
 
     function setErrorState(show) {
@@ -734,6 +863,7 @@
         structure,
         snapshot.structuralRead || 'No structural read available.'
       );
+      document.getElementById('cottonTakeValue').textContent = buildCottonCandyTake(snapshot);
 
       renderCharts(snapshot);
     }
