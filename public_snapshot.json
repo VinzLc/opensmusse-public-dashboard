@@ -1,15 +1,15 @@
 {
   "bot": "OpenSmusse",
   "symbol": "SOLUSDT",
-  "updatedAt": "2026-03-01T15:57:33.298Z",
+  "updatedAt": "2026-03-01T15:59:33.300Z",
   "marketStructure": {
     "openInterest": "falling",
     "funding": "neutral",
     "longShort": "69% long / 31% short",
-    "orderbook": "balanced",
+    "orderbook": "ask-heavy",
     "liquidations": "balanced"
   },
-  "structuralRead": "Market participation is decreasing, which points to reduced conviction from new positioning. Order flow is balanced, and liquidation pressure remains balanced. Overall, funding is neutral and conditions look relatively calm without strong crowding.",
+  "structuralRead": "Market participation is decreasing, which points to reduced conviction from new positioning. Order flow is currently ask-heavy, while liquidation pressure remains balanced. Overall, funding is neutral and conditions look relatively calm without strong crowding.",
   "regime": "CHOP",
   "transitionQuality": "NEUTRAL",
   "history": {
@@ -31,7 +31,9 @@
       "2026-03-01T15:54:33.296Z",
       "2026-03-01T15:55:33.297Z",
       "2026-03-01T15:56:33.297Z",
-      "2026-03-01T15:57:33.298Z"
+      "2026-03-01T15:57:33.298Z",
+      "2026-03-01T15:58:33.297Z",
+      "2026-03-01T15:59:33.300Z"
     ],
     "openInterest": [
       0,
@@ -51,7 +53,9 @@
       9803879.21,
       9802071.8,
       9801126.78,
-      9791762.97
+      9791762.97,
+      9786480.85,
+      9785966.88
     ],
     "price": [
       0,
@@ -71,7 +75,9 @@
       86.0715589,
       86.10029466,
       86.05670537,
-      86
+      86,
+      85.75,
+      85.63323776
     ],
     "fundingRate": [
       0,
@@ -91,7 +97,9 @@
       0.00005849,
       0.00005755,
       0.00005755,
-      0.00005678
+      0.00005678,
+      0.00005573,
+      0.00005377
     ],
     "longRatio": [
       0,
@@ -111,6 +119,8 @@
       0.6901,
       0.6901,
       0.6901,
+      0.6899,
+      0.6899,
       0.6899
     ],
     "shortRatio": [
@@ -131,6 +141,8 @@
       0.3099,
       0.3099,
       0.3099,
+      0.3101,
+      0.3101,
       0.3101
     ],
     "liquidationLong": [
@@ -151,9 +163,13 @@
       0,
       0,
       0,
+      0,
+      0,
       0
     ],
     "liquidationShort": [
+      0,
+      0,
       0,
       0,
       0,
