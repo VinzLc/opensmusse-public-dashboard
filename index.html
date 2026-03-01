@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OpenSmusse — Market Structure Dashboard</title>
+  <link rel="icon" href="/favicon.ico" />
   <style>
     :root {
       --bg: #0b1118;
@@ -425,6 +426,47 @@
       return text.replace(/_/g, ' ');
     }
 
+    function buildNarrativeStructuralRead(structure, fallbackText) {
+      const oi = (structure.openInterest || '').toLowerCase();
+      const funding = (structure.funding || '').toLowerCase();
+      const orderbook = (structure.orderbook || '').toLowerCase();
+      const liquidations = (structure.liquidations || '').toLowerCase();
+
+      const participation =
+        oi === 'rising'
+          ? 'Market participation is increasing, suggesting fresh positioning is entering the market.'
+          : oi === 'falling'
+            ? 'Market participation is decreasing, suggesting less new positioning and weaker conviction.'
+            : 'Market participation is stable, indicating positioning is not expanding significantly.'
+
+      const pressure =
+        orderbook === 'bid-heavy'
+          ? 'Order flow is currently bid-heavy'
+          : orderbook === 'ask-heavy'
+            ? 'Order flow is currently ask-heavy'
+            : 'Order flow remains balanced'
+
+      const liquidationContext =
+        liquidations === 'longs dominant'
+          ? 'with long liquidations dominating recent forced flow.'
+          : liquidations === 'shorts dominant'
+            ? 'with short liquidations dominating recent forced flow.'
+            : 'with liquidation flow broadly balanced.'
+
+      const implication =
+        funding === 'extreme'
+          ? 'Overall conditions are crowded and potentially unstable.'
+          : funding === 'elevated'
+            ? 'Overall conditions show directional crowding, so moves may continue but remain fragile.'
+            : 'Overall conditions point to a market without strong directional conviction.'
+
+      if (!oi && !funding && !orderbook && !liquidations && fallbackText) {
+        return fallbackText;
+      }
+
+      return `${participation} ${pressure}, ${liquidationContext} ${implication}`;
+    }
+
     function setErrorState(show) {
       document.getElementById('errorBanner').style.display = show ? 'block' : 'none';
     }
@@ -688,8 +730,10 @@
       document.getElementById('longShortValue').textContent = structure.longShort || '—';
       document.getElementById('orderbookValue').textContent = normalize(structure.orderbook);
       document.getElementById('liquidationsValue').textContent = normalize(structure.liquidations);
-      document.getElementById('structuralReadValue').textContent =
-        snapshot.structuralRead || 'No structural read available.';
+      document.getElementById('structuralReadValue').textContent = buildNarrativeStructuralRead(
+        structure,
+        snapshot.structuralRead || 'No structural read available.'
+      );
 
       renderCharts(snapshot);
     }
