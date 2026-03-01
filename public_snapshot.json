@@ -1,20 +1,19 @@
 {
   "bot": "OpenSmusse",
   "symbol": "SOLUSDT",
-  "updatedAt": "2026-03-01T16:45:33.341Z",
+  "updatedAt": "2026-03-01T16:46:33.342Z",
   "marketStructure": {
     "openInterest": "falling",
     "funding": "neutral",
     "longShort": "69% long / 31% short",
-    "orderbook": "balanced",
+    "orderbook": "bid-heavy",
     "liquidations": "balanced"
   },
-  "structuralRead": "Market participation is decreasing, which points to reduced conviction from new positioning. Order flow is balanced, and liquidation pressure remains balanced. Overall, funding is neutral and conditions look relatively calm without strong crowding.",
+  "structuralRead": "Market participation is decreasing, which points to reduced conviction from new positioning. Order flow is currently bid-heavy, while liquidation pressure remains balanced. Overall, funding is neutral and conditions look relatively calm without strong crowding.",
   "regime": "CHOP",
   "transitionQuality": "NEUTRAL",
   "history": {
     "timestamps": [
-      "2026-03-01T15:46:33.291Z",
       "2026-03-01T15:47:33.291Z",
       "2026-03-01T15:48:33.291Z",
       "2026-03-01T15:49:33.292Z",
@@ -73,10 +72,10 @@
       "2026-03-01T16:42:33.340Z",
       "2026-03-01T16:43:33.340Z",
       "2026-03-01T16:44:33.341Z",
-      "2026-03-01T16:45:33.341Z"
+      "2026-03-01T16:45:33.341Z",
+      "2026-03-01T16:46:33.341Z"
     ],
     "openInterest": [
-      9803612.31,
       9807915.58,
       9807702.38,
       9807214.32,
@@ -135,10 +134,10 @@
       9809032.57,
       9811053.12,
       9810411.21,
-      9807043.36
+      9807043.36,
+      9795209.44
     ],
     "price": [
-      86.41,
       86.41031366,
       86.34,
       86.3084742,
@@ -197,10 +196,10 @@
       85.6106242,
       85.64136525,
       85.69,
-      85.35
+      85.35,
+      85.42
     ],
     "fundingRate": [
-      0.0000621,
       0.00006118,
       0.00006118,
       0.00006066,
@@ -259,11 +258,11 @@
       0.00004385,
       0.00004314,
       0.00004268,
+      0.00004214,
       0.00004214
     ],
     "longRatio": [
       0.6902,
-      0.6902,
       0.6905,
       0.6905,
       0.6905,
@@ -318,6 +317,7 @@
       0.6891,
       0.6891,
       0.6891,
+      0.689,
       0.689,
       0.689,
       0.689,
@@ -325,7 +325,6 @@
     ],
     "shortRatio": [
       0.3098,
-      0.3098,
       0.3095,
       0.3095,
       0.3095,
@@ -380,6 +379,7 @@
       0.3109,
       0.3109,
       0.3109,
+      0.311,
       0.311,
       0.311,
       0.311,
