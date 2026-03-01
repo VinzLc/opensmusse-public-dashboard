@@ -1,15 +1,15 @@
 {
   "bot": "OpenSmusse",
   "symbol": "SOLUSDT",
-  "updatedAt": "2026-03-01T16:14:33.314Z",
+  "updatedAt": "2026-03-01T16:15:33.314Z",
   "marketStructure": {
-    "openInterest": "falling",
+    "openInterest": "rising",
     "funding": "neutral",
     "longShort": "69% long / 31% short",
-    "orderbook": "ask-heavy",
+    "orderbook": "bid-heavy",
     "liquidations": "balanced"
   },
-  "structuralRead": "Market participation is decreasing, which points to reduced conviction from new positioning. Order flow is currently ask-heavy, while liquidation pressure remains balanced. Overall, funding is neutral and conditions look relatively calm without strong crowding.",
+  "structuralRead": "Market participation is increasing, which suggests fresh positioning is entering the market. Order flow is currently bid-heavy, while liquidation pressure remains balanced. Overall, funding is neutral and conditions look relatively calm without strong crowding.",
   "regime": "CHOP",
   "transitionQuality": "NEUTRAL",
   "history": {
@@ -48,7 +48,8 @@
       "2026-03-01T16:11:33.313Z",
       "2026-03-01T16:12:33.313Z",
       "2026-03-01T16:13:33.313Z",
-      "2026-03-01T16:14:33.314Z"
+      "2026-03-01T16:14:33.314Z",
+      "2026-03-01T16:15:33.314Z"
     ],
     "openInterest": [
       0,
@@ -85,7 +86,8 @@
       9798835.63,
       9802824.19,
       9798781.73,
-      9800131.52
+      9800131.52,
+      9798968.81
     ],
     "price": [
       0,
@@ -122,7 +124,8 @@
       85.95014961,
       85.88,
       85.85424864,
-      85.76090841
+      85.76090841,
+      85.78
     ],
     "fundingRate": [
       0,
@@ -159,6 +162,7 @@
       0.00005295,
       0.0000528,
       0.00005198,
+      0.00005181,
       0.00005181
     ],
     "longRatio": [
@@ -194,6 +198,7 @@
       0.6879,
       0.6879,
       0.6879,
+      0.6874,
       0.6874,
       0.6874,
       0.6874
@@ -233,6 +238,7 @@
       0.3121,
       0.3126,
       0.3126,
+      0.3126,
       0.3126
     ],
     "liquidationLong": [
@@ -270,9 +276,11 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "liquidationShort": [
+      0,
       0,
       0,
       0,
