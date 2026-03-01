@@ -1,15 +1,15 @@
 {
   "bot": "OpenSmusse",
   "symbol": "SOLUSDT",
-  "updatedAt": "2026-03-01T15:12:21.956Z",
+  "updatedAt": "2026-03-01T15:13:21.956Z",
   "marketStructure": {
-    "openInterest": "flat",
+    "openInterest": "falling",
     "funding": "neutral",
     "longShort": "69% long / 31% short",
-    "orderbook": "bid-heavy",
+    "orderbook": "balanced",
     "liquidations": "balanced"
   },
-  "structuralRead": "open interest is flat; orderbook is bid-heavy; funding is neutral; liquidations are balanced.",
+  "structuralRead": "open interest is falling; orderbook is balanced; funding is neutral; liquidations are balanced.",
   "regime": "CHOP",
   "transitionQuality": "NEUTRAL"
 }
