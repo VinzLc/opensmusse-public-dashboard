@@ -198,24 +198,24 @@
 
     .cotton-panel {
       padding: 20px;
-      border: 1px solid #3f4960;
-      background: linear-gradient(180deg, #1a2233 0%, #171f2f 100%);
+      border: 1px solid #45506a;
+      background: linear-gradient(180deg, #20293c 0%, #1b2335 100%);
     }
 
     .cotton-text {
-      margin: 0;
+      margin: 0 auto;
+      max-width: 920px;
       font-size: 1.03rem;
       color: #e9eff9;
       line-height: 1.62;
-      text-align: left;
+      text-align: center;
     }
 
-    .cotton-disclaimer {
-      margin-top: 12px;
+    .cotton-subtitle {
+      margin: -2px 0 14px;
       color: var(--muted);
-      font-size: 0.84rem;
-      border-top: 1px solid #313c51;
-      padding-top: 10px;
+      font-size: 0.86rem;
+      text-align: center;
     }
 
     .charts-grid {
@@ -347,10 +347,10 @@
       <p class="read-text" id="structuralReadValue">Loading deterministic structural read...</p>
     </section>
 
-    <section class="panel cotton-panel" aria-label="CottonCandy Take">
-      <h2>🧁 CottonCandy’s Take</h2>
-      <p class="cotton-text" id="cottonTakeValue">CottonCandy is reading the tape and preparing a calm market note...</p>
-      <p class="cotton-disclaimer">Entertainment-only market commentary. Not trading advice.</p>
+    <section class="panel cotton-panel" aria-label="CottonCandy Pocket">
+      <h2>🧁 CottonCandy-Pocket</h2>
+      <p class="cotton-subtitle">Educational market commentary — not trading advice</p>
+      <p class="cotton-text" id="cottonPocketValue">CottonCandy-Pocket is preparing a mentor-style learning note from current structure...</p>
     </section>
 
     <section class="panel" aria-label="Market Structure Charts">
@@ -503,8 +503,8 @@
       const shortPct = Number(m[2]);
       if (!Number.isFinite(longPct) || !Number.isFinite(shortPct)) return 'balanced';
       const diff = longPct - shortPct;
-      if (diff >= 20) return 'long-crowded';
-      if (diff <= -20) return 'short-crowded';
+      if (diff >= 20) return 'side-a-crowded';
+      if (diff <= -20) return 'side-b-crowded';
       return 'balanced';
     }
 
@@ -526,7 +526,7 @@
       return 'normal';
     }
 
-    function buildCottonCandyTake(snapshot) {
+    function buildCottonCandyPocket(snapshot) {
       const structure = snapshot.marketStructure || {};
       const regime = (snapshot.regime || 'UNKNOWN').toUpperCase();
       const quality = (snapshot.transitionQuality || 'NEUTRAL').toUpperCase();
@@ -537,63 +537,60 @@
       const lsBias = parseLongShortBias(structure.longShort);
       const vol = deriveVolatilityContext(snapshot);
 
-      let mood = 'calm';
-      if (quality === 'LOW' || funding === 'extreme') {
-        mood = 'fragile';
-      } else if (regime === 'TREND_EXPANSION' && quality === 'HIGH') {
-        mood = 'energetic';
-      } else if (orderbook !== 'balanced' || liquidations !== 'balanced' || vol === 'elevated') {
-        mood = 'restless';
-      } else if (regime === 'CHOP' && vol === 'compressed') {
-        mood = 'calm';
-      }
-
-      const moodSentence =
-        mood === 'energetic'
-          ? 'The tape feels energetic today, with structure showing active intent.'
-          : mood === 'fragile'
-            ? 'The tape feels fragile right now, with conviction still uneven.'
-            : mood === 'restless'
-              ? 'The tape feels restless, with pressure pockets appearing but not fully resolving.'
-              : 'The tape feels calm, with no clear structural urgency.';
-
-      const participationSentence =
-        oi === 'rising'
-          ? 'Participation is building as open interest rises, which usually reflects fresh engagement.'
-          : oi === 'falling'
-            ? 'Participation is easing as open interest falls, suggesting reduced commitment from new positioning.'
-            : 'Participation is steady, with open interest not expanding meaningfully.';
-
-      const pressureSentence = (() => {
-        const orderbookClause =
-          orderbook === 'bid-heavy'
-            ? 'Orderbook pressure leans to bids'
-            : orderbook === 'ask-heavy'
-              ? 'Orderbook pressure leans to asks'
-              : 'Orderbook pressure is balanced';
-        const liqClause =
-          liquidations === 'longs dominant'
-            ? 'and long-side liquidations are the dominant forced flow'
-            : liquidations === 'shorts dominant'
-              ? 'and short-side liquidations are the dominant forced flow'
-              : 'and forced liquidations remain balanced';
-        const crowdClause =
-          lsBias === 'long-crowded'
-            ? ', with long positioning noticeably crowded.'
-            : lsBias === 'short-crowded'
-              ? ', with short positioning noticeably crowded.'
-              : ', with positioning broadly two-sided.';
-        return `${orderbookClause}, ${liqClause}${crowdClause}`;
+      const lessonContext = (() => {
+        if (regime === 'TREND_EXPANSION' && quality === 'HIGH') {
+          return 'Lesson context: this is a directional environment with relatively coherent structure, so observation quality is usually high.';
+        }
+        if (regime === 'CHOP' || vol === 'compressed') {
+          return 'Lesson context: this is a rotational environment where structure often develops slowly and clarity can lag.';
+        }
+        if (quality === 'LOW' || funding === 'extreme') {
+          return 'Lesson context: this is a fragile environment where surface movement can look clear while underlying structure stays mixed.';
+        }
+        return 'Lesson context: this is a mixed environment where context matters more than isolated signals.';
       })();
 
-      const mindsetSentence =
-        quality === 'HIGH' && regime !== 'CHOP'
-          ? 'CottonCandy’s mindset: stay disciplined and let clear structure speak before drawing strong conclusions.'
-          : quality === 'LOW' || mood === 'fragile'
-            ? 'CottonCandy’s mindset: stay patient, protect mental bandwidth, and wait for cleaner confirmation.'
-            : 'CottonCandy’s mindset: stay calm, keep context first, and avoid forcing a narrative.';
+      const keyObservationA = (() => {
+        const oiClause =
+          oi === 'rising'
+            ? 'Participation is expanding through rising open interest'
+            : oi === 'falling'
+              ? 'Participation is easing through falling open interest'
+              : 'Participation is broadly steady';
+        const orderbookClause =
+          orderbook === 'bid-heavy'
+            ? 'orderbook pressure leans one way'
+            : orderbook === 'ask-heavy'
+              ? 'orderbook pressure leans the other way'
+              : 'orderbook pressure remains balanced';
+        return `Key observation: ${oiClause}, and ${orderbookClause}.`;
+      })();
 
-      return `${moodSentence} ${participationSentence} ${pressureSentence} ${mindsetSentence}`;
+      const keyObservationB = (() => {
+        const crowdClause =
+          lsBias === 'side-a-crowded'
+            ? 'Crowding looks one-sided'
+            : lsBias === 'side-b-crowded'
+              ? 'Crowding also looks one-sided'
+              : 'Crowding appears more evenly distributed';
+        const liqClause =
+          liquidations === 'longs dominant' || liquidations === 'shorts dominant'
+            ? 'forced-flow activity is imbalanced'
+            : 'forced-flow activity is balanced';
+        return `Experienced traders often notice that ${crowdClause.toLowerCase()} and ${liqClause}; this tends to matter because unstable structure can reshape sentiment quickly.`;
+      })();
+
+      const mentorReminder = (() => {
+        if (quality === 'LOW' || vol === 'elevated') {
+          return 'Mentor reminder: many traders learn to keep interpretation simple when structure is noisy, because patience protects decision quality.';
+        }
+        if (quality === 'HIGH' && regime !== 'CHOP') {
+          return 'Mentor reminder: many traders learn to stay process-focused, since consistent interpretation usually matters more than dramatic narratives.';
+        }
+        return 'Mentor reminder: this is usually where patience comes in, with discipline centered on context, clarity, and emotional steadiness.';
+      })();
+
+      return `${lessonContext} ${keyObservationA} ${keyObservationB} ${mentorReminder}`;
     }
 
     function setErrorState(show) {
@@ -863,7 +860,7 @@
         structure,
         snapshot.structuralRead || 'No structural read available.'
       );
-      document.getElementById('cottonTakeValue').textContent = buildCottonCandyTake(snapshot);
+      document.getElementById('cottonPocketValue').textContent = buildCottonCandyPocket(snapshot);
 
       renderCharts(snapshot);
     }
