@@ -1,15 +1,15 @@
 {
   "bot": "OpenSmusse",
   "symbol": "SOLUSDT",
-  "updatedAt": "2026-03-01T16:31:33.328Z",
+  "updatedAt": "2026-03-01T16:32:33.328Z",
   "marketStructure": {
     "openInterest": "falling",
     "funding": "neutral",
     "longShort": "69% long / 31% short",
-    "orderbook": "ask-heavy",
+    "orderbook": "balanced",
     "liquidations": "balanced"
   },
-  "structuralRead": "Market participation is decreasing, which points to reduced conviction from new positioning. Order flow is currently ask-heavy, while liquidation pressure remains balanced. Overall, funding is neutral and conditions look relatively calm without strong crowding.",
+  "structuralRead": "Market participation is decreasing, which points to reduced conviction from new positioning. Order flow is balanced, and liquidation pressure remains balanced. Overall, funding is neutral and conditions look relatively calm without strong crowding.",
   "regime": "CHOP",
   "transitionQuality": "NEUTRAL",
   "history": {
@@ -65,7 +65,8 @@
       "2026-03-01T16:28:33.325Z",
       "2026-03-01T16:29:33.325Z",
       "2026-03-01T16:30:33.327Z",
-      "2026-03-01T16:31:33.328Z"
+      "2026-03-01T16:31:33.328Z",
+      "2026-03-01T16:32:33.328Z"
     ],
     "openInterest": [
       0,
@@ -119,7 +120,8 @@
       9827655.66,
       9826406.61,
       9818647.89,
-      9819218.66
+      9819218.66,
+      9814318.21
     ],
     "price": [
       0,
@@ -173,7 +175,8 @@
       85.96252303,
       85.86217057,
       85.86,
-      85.83
+      85.83,
+      85.88
     ],
     "fundingRate": [
       0,
@@ -227,7 +230,8 @@
       0.00004642,
       0.00004642,
       0.00004642,
-      0.00004575
+      0.00004575,
+      0.00004558
     ],
     "longRatio": [
       0,
@@ -277,6 +281,7 @@
       0.6884,
       0.6884,
       0.6884,
+      0.6879,
       0.6879,
       0.6879,
       0.6879,
@@ -335,6 +340,7 @@
       0.3121,
       0.3121,
       0.3121,
+      0.3121,
       0.3121
     ],
     "liquidationLong": [
@@ -389,9 +395,11 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "liquidationShort": [
+      0,
       0,
       0,
       0,
