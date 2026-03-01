@@ -112,6 +112,67 @@
       display: none;
     }
 
+    .edu-wrap {
+      max-width: 940px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, #151d2a 0%, #121925 100%);
+      border: 1px solid #33435a;
+    }
+
+    .edu-intro {
+      color: #dce5f4;
+      line-height: 1.65;
+      margin: 0;
+      text-align: center;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .edu-section {
+      border-top: 1px solid #2e3c52;
+      padding-top: 16px;
+      margin-top: 16px;
+    }
+
+    .edu-section h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: #e6edf9;
+      letter-spacing: 0.2px;
+    }
+
+    .edu-principle {
+      border: 1px solid #31405a;
+      background: #192233;
+      border-radius: 12px;
+      padding: 12px 13px;
+      margin-bottom: 10px;
+    }
+
+    .edu-principle-title {
+      margin: 0 0 7px;
+      font-size: 0.96rem;
+      color: #eaf1fb;
+      font-weight: 700;
+    }
+
+    .edu-principle-text {
+      margin: 0;
+      color: #d2dcec;
+      font-size: 0.92rem;
+      line-height: 1.62;
+    }
+
+    .edu-takeaway {
+      margin-top: 8px;
+      color: #b7c6de;
+      font-size: 0.86rem;
+      font-weight: 620;
+      border-top: 1px solid #2f3d54;
+      padding-top: 7px;
+    }
+
     .panel {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -379,6 +440,15 @@
       position: relative;
     }
 
+    .chart-note {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      text-align: center;
+      line-height: 1.45;
+      display: none;
+    }
+
     .chart-empty {
       position: absolute;
       inset: 0;
@@ -445,6 +515,7 @@
     <nav class="tabs" aria-label="Dashboard Mode Tabs">
       <button class="tab-btn active" id="tabBtnTruth" type="button">Truth Mode</button>
       <button class="tab-btn" id="tabBtnDarkSide" type="button">🔥 The Dark Side</button>
+      <button class="tab-btn" id="tabBtnHowWeThink" type="button">📘 How We Think</button>
     </nav>
 
     <div class="tab-content" id="tabTruth">
@@ -528,6 +599,7 @@
             <canvas id="chartLiquidations"></canvas>
             <div class="chart-empty" id="emptyLiquidations">No history available yet.</div>
           </div>
+          <div class="chart-note" id="noteLiquidationsCalm">No forced liquidations detected during this period.<br/>Market activity appears orderly.</div>
         </article>
       </div>
     </section>
@@ -570,6 +642,84 @@
             </div>
           </div>
         </article>
+      </section>
+    </div>
+
+    <div class="tab-content hidden" id="tabHowWeThink">
+      <section class="panel edu-wrap" aria-label="How We Think">
+        <h2>📘 How We Think</h2>
+        <p class="edu-intro">
+          OpenSmusse is a deterministic market-structure observer that explains conditions through consistent rules.
+          It is not a prediction engine, not a signal seller, and not a promise of outcomes.
+          This page is educational documentation only, written to make interpretation principles transparent.
+        </p>
+
+        <div class="edu-section">
+          <h3>Core Principles</h3>
+
+          <article class="edu-principle">
+            <p class="edu-principle-title">1) Movement Must Be Earned</p>
+            <p class="edu-principle-text">Price can move quickly for many reasons, but not all movement carries durable meaning. OpenSmusse separates visible speed from structural confirmation. A move is considered more meaningful when several conditions align, not when one metric spikes in isolation.</p>
+            <p class="edu-takeaway">Takeaway: movement matters more when structure supports it.</p>
+          </article>
+
+          <article class="edu-principle">
+            <p class="edu-principle-title">2) Participation Matters More Than Price</p>
+            <p class="edu-principle-text">Price prints are outcomes, while participation often reveals commitment. Open interest and crowding context help show whether the market is being broadly engaged or only briefly pushed. This distinction keeps interpretation grounded in effort, not appearance.</p>
+            <p class="edu-takeaway">Takeaway: commitment quality often explains price quality.</p>
+          </article>
+
+          <article class="edu-principle">
+            <p class="edu-principle-title">3) Repetition Builds Importance</p>
+            <p class="edu-principle-text">When the same structural behavior repeats, it usually carries information rather than noise. Repeated tests, repeated failures, and repeated balance zones can strengthen context over time. OpenSmusse treats repetition as signal amplification, not redundancy.</p>
+            <p class="edu-takeaway">Takeaway: repeated behavior often marks meaningful structure.</p>
+          </article>
+
+          <article class="edu-principle">
+            <p class="edu-principle-title">4) Containment Is Information</p>
+            <p class="edu-principle-text">Quiet ranges are not empty; they are often active information zones. Containment can indicate unresolved pressure, distribution of participation, or a market defining boundaries. OpenSmusse reads this state as context formation, not inactivity.</p>
+            <p class="edu-takeaway">Takeaway: balance can be informative, not neutral.</p>
+          </article>
+
+          <article class="edu-principle">
+            <p class="edu-principle-title">5) Forced Moves Are Different From Conviction</p>
+            <p class="edu-principle-text">Liquidation-driven motion can create sharp displacement without strong underlying agreement. OpenSmusse distinguishes forced-flow episodes from conviction-led structure. This helps avoid confusing pressure events with stable intent.</p>
+            <p class="edu-takeaway">Takeaway: speed from stress is not the same as structural strength.</p>
+          </article>
+
+          <article class="edu-principle">
+            <p class="edu-principle-title">6) Crowds Reduce Optionality</p>
+            <p class="edu-principle-text">When positioning crowds early, flexibility usually narrows. Funding pressure and ratio imbalance can make structure more fragile even when direction looks obvious. OpenSmusse treats crowding as a context modifier, not a standalone verdict.</p>
+            <p class="edu-takeaway">Takeaway: crowding often limits stability before it confirms direction.</p>
+          </article>
+
+          <article class="edu-principle">
+            <p class="edu-principle-title">7) Mixed Signals Call For Restraint</p>
+            <p class="edu-principle-text">Conflicting metrics are common in live markets and should be acknowledged directly. OpenSmusse does not force a strong narrative when structure disagrees with itself. In mixed conditions, preserving interpretation quality is prioritized over certainty.</p>
+            <p class="edu-takeaway">Takeaway: restraint is a valid response to ambiguity.</p>
+          </article>
+
+          <article class="edu-principle">
+            <p class="edu-principle-title">8) Not Every Moment Deserves Action</p>
+            <p class="edu-principle-text">Silence can be a feature, not a failure. If structure is weak or incomplete, reduced commentary is intentional and informational. OpenSmusse treats selective attention as part of discipline, not absence of capability.</p>
+            <p class="edu-takeaway">Takeaway: no strong call can still be a high-quality read.</p>
+          </article>
+        </div>
+
+        <div class="edu-section">
+          <h3>How We Read Markets</h3>
+          <p class="edu-principle-text">OpenSmusse emphasizes structure over prediction. It describes how effort relates to consequence by combining participation, pressure, crowding, and forced-flow context. Silence is also interpreted: when little stands out, the system communicates that the market may not have earned focused narrative yet.</p>
+        </div>
+
+        <div class="edu-section">
+          <h3>Understanding The Tabs</h3>
+          <p class="edu-principle-text"><strong>Core Dashboard</strong> presents observer-based market structure snapshots and history without theatrical framing. <strong>CottonCandy-Pocket</strong> provides calm mentor-style educational commentary based on deterministic templates. <strong>🔥 The Dark Side</strong> is explicitly fictional entertainment mode and should never be interpreted as system behavior or recommendation.</p>
+        </div>
+
+        <div class="edu-section">
+          <h3>Closing Note</h3>
+          <p class="edu-principle-text">This documentation is educational and informational only. It explains how OpenSmusse frames structure, not what anyone should do in markets. Nothing here is financial advice, and no section is intended as instruction.</p>
+        </div>
       </section>
     </div>
   </main>
@@ -635,18 +785,24 @@
     }
 
     function switchTab(tab) {
-      activeTab = tab === 'dark' ? 'dark' : 'truth';
+      activeTab = (tab === 'dark' || tab === 'how') ? tab : 'truth';
       const truth = document.getElementById('tabTruth');
       const dark = document.getElementById('tabDarkSide');
+      const how = document.getElementById('tabHowWeThink');
       const btnTruth = document.getElementById('tabBtnTruth');
       const btnDark = document.getElementById('tabBtnDarkSide');
-      if (!truth || !dark || !btnTruth || !btnDark) return;
+      const btnHow = document.getElementById('tabBtnHowWeThink');
+      if (!truth || !dark || !how || !btnTruth || !btnDark || !btnHow) return;
 
+      const showTruth = activeTab === 'truth';
       const showDark = activeTab === 'dark';
-      truth.classList.toggle('hidden', showDark);
+      const showHow = activeTab === 'how';
+      truth.classList.toggle('hidden', !showTruth);
       dark.classList.toggle('hidden', !showDark);
-      btnTruth.classList.toggle('active', !showDark);
+      how.classList.toggle('hidden', !showHow);
+      btnTruth.classList.toggle('active', showTruth);
       btnDark.classList.toggle('active', showDark);
+      btnHow.classList.toggle('active', showHow);
     }
 
     function buildNarrativeStructuralRead(structure, fallbackText) {
@@ -784,6 +940,11 @@
       if (el) el.style.display = show ? 'flex' : 'none';
     }
 
+    function setCalmLiquidationNote(show) {
+      const el = document.getElementById('noteLiquidationsCalm');
+      if (el) el.style.display = show ? 'block' : 'none';
+    }
+
     function destroyCharts() {
       [chartOpenInterestPrice, chartFundingRate, chartLongShort, chartLiquidations].forEach(c => {
         if (c) c.destroy();
@@ -836,6 +997,7 @@
         emptyState('emptyFundingRate', true);
         emptyState('emptyLongShort', true);
         emptyState('emptyLiquidations', true);
+        setCalmLiquidationNote(false);
         return;
       }
 
@@ -846,6 +1008,7 @@
         emptyState('emptyFundingRate', true);
         emptyState('emptyLongShort', true);
         emptyState('emptyLiquidations', true);
+        setCalmLiquidationNote(false);
         return;
       }
 
@@ -862,6 +1025,14 @@
       emptyState('emptyFundingRate', !fundingRate.length);
       emptyState('emptyLongShort', !(longRatio.length && shortRatio.length));
       emptyState('emptyLiquidations', !(liqLong.length && liqShort.length));
+      const calmWindow = 12;
+      const recentLong = liqLong.slice(-calmWindow);
+      const recentShort = liqShort.slice(-calmWindow);
+      const hasCalmWindow = recentLong.length === calmWindow && recentShort.length === calmWindow;
+      const isCalmPeriod = hasCalmWindow &&
+        recentLong.every(v => v === 0) &&
+        recentShort.every(v => v === 0);
+      setCalmLiquidationNote(isCalmPeriod);
 
       if (chartOpenInterestPrice) chartOpenInterestPrice.destroy();
       if (chartFundingRate) chartFundingRate.destroy();
@@ -1034,7 +1205,7 @@
       document.getElementById('cottonPocketValue').textContent =
         typeof snapshot.cottonCandyPocket === 'string' && snapshot.cottonCandyPocket.trim().length > 0
           ? snapshot.cottonCandyPocket
-          : 'CottonCandy-Pocket commentary is unavailable at the moment.';
+          : 'Nothing in the current structure stands out enough to deserve commentary. When experienced traders find little to say, it’s often because the market hasn’t earned attention yet.';
       document.getElementById('darkSideValue').textContent = buildDarkSideCommentary(snapshot);
       document.getElementById('darkRegime').textContent = normalize(snapshot.regime);
       document.getElementById('darkOi').textContent = normalize(structure.openInterest);
@@ -1073,6 +1244,7 @@
     setInterval(loadSnapshot, 60_000);
     document.getElementById('tabBtnTruth')?.addEventListener('click', () => switchTab('truth'));
     document.getElementById('tabBtnDarkSide')?.addEventListener('click', () => switchTab('dark'));
+    document.getElementById('tabBtnHowWeThink')?.addEventListener('click', () => switchTab('how'));
   </script>
 </body>
 </html>
