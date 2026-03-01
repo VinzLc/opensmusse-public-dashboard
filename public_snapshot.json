@@ -1,15 +1,15 @@
 {
   "bot": "OpenSmusse",
   "symbol": "SOLUSDT",
-  "updatedAt": "2026-03-01T15:26:21.963Z",
+  "updatedAt": "2026-03-01T15:26:40.784Z",
   "marketStructure": {
-    "openInterest": "falling",
+    "openInterest": "flat",
     "funding": "neutral",
-    "longShort": "69% long / 31% short",
-    "orderbook": "ask-heavy",
+    "longShort": "N/A",
+    "orderbook": "balanced",
     "liquidations": "balanced"
   },
-  "structuralRead": "open interest is falling; orderbook is ask-heavy; funding is neutral; liquidations are balanced.",
-  "regime": "CHOP",
+  "structuralRead": "Market participation is stable, indicating positioning is not expanding meaningfully. Order flow is balanced, and liquidation pressure remains balanced. Overall, funding is neutral and conditions look relatively calm without strong crowding.",
+  "regime": "UNKNOWN",
   "transitionQuality": "NEUTRAL"
 }
