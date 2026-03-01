@@ -1,15 +1,15 @@
 {
   "bot": "OpenSmusse",
   "symbol": "SOLUSDT",
-  "updatedAt": "2026-03-01T15:46:33.291Z",
+  "updatedAt": "2026-03-01T15:47:33.291Z",
   "marketStructure": {
-    "openInterest": "falling",
+    "openInterest": "rising",
     "funding": "neutral",
     "longShort": "69% long / 31% short",
     "orderbook": "balanced",
     "liquidations": "balanced"
   },
-  "structuralRead": "Market participation is decreasing, which points to reduced conviction from new positioning. Order flow is balanced, and liquidation pressure remains balanced. Overall, funding is neutral and conditions look relatively calm without strong crowding.",
+  "structuralRead": "Market participation is increasing, which suggests fresh positioning is entering the market. Order flow is balanced, and liquidation pressure remains balanced. Overall, funding is neutral and conditions look relatively calm without strong crowding.",
   "regime": "CHOP",
   "transitionQuality": "NEUTRAL",
   "history": {
@@ -20,7 +20,8 @@
       "2026-03-01T15:43:33.290Z",
       "2026-03-01T15:44:33.290Z",
       "2026-03-01T15:45:33.290Z",
-      "2026-03-01T15:46:33.291Z"
+      "2026-03-01T15:46:33.291Z",
+      "2026-03-01T15:47:33.291Z"
     ],
     "openInterest": [
       0,
@@ -29,7 +30,8 @@
       9802459,
       9802471.46,
       9804293.55,
-      9803612.31
+      9803612.31,
+      9807915.58
     ],
     "price": [
       0,
@@ -38,7 +40,8 @@
       86.4938244,
       86.44,
       86.39,
-      86.41
+      86.41,
+      86.41031366
     ],
     "fundingRate": [
       0,
@@ -47,11 +50,13 @@
       0.00006395,
       0.00006395,
       0.00006316,
-      0.0000621
+      0.0000621,
+      0.00006118
     ],
     "longRatio": [
       0,
       0.69,
+      0.6902,
       0.6902,
       0.6902,
       0.6902,
@@ -65,6 +70,7 @@
       0.3098,
       0.3098,
       0.3098,
+      0.3098,
       0.3098
     ],
     "liquidationLong": [
@@ -74,9 +80,11 @@
       0,
       0,
       0,
+      0,
       0
     ],
     "liquidationShort": [
+      0,
       0,
       0,
       0,
