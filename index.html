@@ -142,6 +142,24 @@
       letter-spacing: 0.2px;
     }
 
+    .bridge-line {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 0.84rem;
+      color: #c7b0bd;
+    }
+
+    .bridge-line button {
+      background: none;
+      border: none;
+      color: #e8c7d5;
+      font-size: inherit;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 0;
+      font-weight: 620;
+    }
+
     .edu-principle {
       border: 1px solid #31405a;
       background: #192233;
@@ -414,7 +432,7 @@
 
     .charts-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: var(--space-3);
     }
 
@@ -433,6 +451,32 @@
       color: #d3dced;
       font-weight: 600;
       text-align: left;
+    }
+
+    .chart-subtitle {
+      margin: -2px 0 10px;
+      color: #96a7c2;
+      font-size: 0.8rem;
+      line-height: 1.35;
+      text-align: left;
+    }
+
+    .coinglass-stats {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: #b8c7dd;
+      font-size: 0.8rem;
+    }
+
+    .coinglass-transparency {
+      margin-top: 8px;
+      color: #99abc6;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      border-top: 1px dashed rgba(120, 143, 175, 0.34);
+      padding-top: 8px;
     }
 
     .chart-wrap {
@@ -472,6 +516,9 @@
     @media (max-width: 1120px) {
       .structure-grid {
         grid-template-columns: repeat(3, minmax(180px, 1fr));
+      }
+      .charts-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -601,6 +648,23 @@
           </div>
           <div class="chart-note" id="noteLiquidationsCalm">No forced liquidations detected during this period.<br/>Market activity appears orderly.</div>
         </article>
+
+        <article class="chart-card">
+          <h3 class="chart-title">Liquidation Pressure (Estimated — Coinglass)</h3>
+          <p class="chart-subtitle">Derived from Coinglass aggregated data. Represents potential forced liquidation zones.</p>
+          <div class="chart-wrap">
+            <canvas id="chartCoinglassPressure"></canvas>
+            <div class="chart-empty" id="emptyCoinglassPressure">Coinglass data unavailable.</div>
+          </div>
+          <div class="coinglass-stats">
+            <span id="coinglassDominantSide">Dominant side: —</span>
+            <span id="coinglassIntensity">Intensity: —</span>
+          </div>
+          <div class="coinglass-transparency">
+            This chart shows estimated liquidation pressure from Coinglass.
+            It does not represent executed liquidations.
+          </div>
+        </article>
       </div>
     </section>
 
@@ -641,6 +705,7 @@
               <div class="value" id="darkBias">—</div>
             </div>
           </div>
+          <p class="bridge-line">Curious how the real system thinks? <button type="button" id="bridgeToHow">Read 📘 How We Think.</button></p>
         </article>
       </section>
     </div>
@@ -653,6 +718,14 @@
           It is not a prediction engine, not a signal seller, and not a promise of outcomes.
           This page is educational documentation only, written to make interpretation principles transparent.
         </p>
+
+        <div class="edu-section">
+          <h3>🔒 Architecture Invariants</h3>
+          <p class="edu-principle-text">OpenSmusse is built around one firm boundary: observation is not action. Anything that watches, classifies, or comments on markets is intentionally separated from anything that can execute. This keeps behavior disciplined and prevents storytelling from turning into decisions.</p>
+          <p class="edu-principle-text">Commentary exists to explain context, not to steer outcomes. CottonCandy language can help readers understand structure, but it is intentionally unable to influence the system’s decision path. The engine acts only through its deterministic rule layers.</p>
+          <p class="edu-principle-text">Silence is also meaningful by design. If structure does not justify a strong read, reduced commentary is treated as a valid signal of uncertainty rather than a missing feature. Restraint is part of integrity, not a gap in capability.</p>
+          <p class="edu-principle-text">This dashboard includes both factual and theatrical modes on purpose. Truth-facing views describe the real system posture, while theatrical views are clearly separated as performance. Keeping that boundary explicit protects trust over time.</p>
+        </div>
 
         <div class="edu-section">
           <h3>Core Principles</h3>
@@ -751,6 +824,7 @@
     let chartFundingRate = null;
     let chartLongShort = null;
     let chartLiquidations = null;
+    let chartCoinglassPressure = null;
     let activeTab = 'truth';
 
     function formatMontrealTime(value) {
@@ -784,6 +858,10 @@
       return text.replace(/_/g, ' ');
     }
 
+    // Maintainer note:
+    // The "How We Think" tab is the documentation source of truth.
+    // CottonCandy-Pocket commentary should align with these principles,
+    // while Dark Side may exaggerate tone but must not contradict them.
     function switchTab(tab) {
       activeTab = (tab === 'dark' || tab === 'how') ? tab : 'truth';
       const truth = document.getElementById('tabTruth');
@@ -946,13 +1024,14 @@
     }
 
     function destroyCharts() {
-      [chartOpenInterestPrice, chartFundingRate, chartLongShort, chartLiquidations].forEach(c => {
+      [chartOpenInterestPrice, chartFundingRate, chartLongShort, chartLiquidations, chartCoinglassPressure].forEach(c => {
         if (c) c.destroy();
       });
       chartOpenInterestPrice = null;
       chartFundingRate = null;
       chartLongShort = null;
       chartLiquidations = null;
+      chartCoinglassPressure = null;
     }
 
     function chartBaseOptions() {
@@ -997,6 +1076,11 @@
         emptyState('emptyFundingRate', true);
         emptyState('emptyLongShort', true);
         emptyState('emptyLiquidations', true);
+        emptyState('emptyCoinglassPressure', true);
+        const dom = document.getElementById('coinglassDominantSide');
+        const intensity = document.getElementById('coinglassIntensity');
+        if (dom) dom.textContent = 'Dominant side: unavailable';
+        if (intensity) intensity.textContent = 'Intensity: unavailable';
         setCalmLiquidationNote(false);
         return;
       }
@@ -1008,6 +1092,11 @@
         emptyState('emptyFundingRate', true);
         emptyState('emptyLongShort', true);
         emptyState('emptyLiquidations', true);
+        emptyState('emptyCoinglassPressure', true);
+        const dom = document.getElementById('coinglassDominantSide');
+        const intensity = document.getElementById('coinglassIntensity');
+        if (dom) dom.textContent = 'Dominant side: unavailable';
+        if (intensity) intensity.textContent = 'Intensity: unavailable';
         setCalmLiquidationNote(false);
         return;
       }
@@ -1038,6 +1127,7 @@
       if (chartFundingRate) chartFundingRate.destroy();
       if (chartLongShort) chartLongShort.destroy();
       if (chartLiquidations) chartLiquidations.destroy();
+      if (chartCoinglassPressure) chartCoinglassPressure.destroy();
 
       if (openInterest.length && price.length) {
         const cfg = chartBaseOptions();
@@ -1183,6 +1273,64 @@
           options: cfg
         });
       }
+
+      const pressure = snapshot.liquidationPressureCoinglass || null;
+      const pressureAvailable =
+        pressure &&
+        Number.isFinite(Number(pressure.abovePricePressure)) &&
+        Number.isFinite(Number(pressure.belowPricePressure));
+      emptyState('emptyCoinglassPressure', !pressureAvailable);
+      const dom = document.getElementById('coinglassDominantSide');
+      const intensity = document.getElementById('coinglassIntensity');
+
+      if (!pressureAvailable) {
+        if (dom) dom.textContent = 'Dominant side: unavailable';
+        if (intensity) intensity.textContent = 'Intensity: unavailable';
+        return;
+      }
+
+      const above = Math.max(0, Math.min(1, Number(pressure.abovePricePressure)));
+      const below = Math.max(0, Math.min(1, Number(pressure.belowPricePressure)));
+      if (dom) dom.textContent = `Dominant side: ${normalize(pressure.dominantSide)}`;
+      if (intensity) intensity.textContent = `Intensity: ${normalize(pressure.intensity)}`;
+
+      const cfgPressure = chartBaseOptions();
+      cfgPressure.indexAxis = 'y';
+      cfgPressure.scales.x = {
+        min: 0,
+        max: 100,
+        ticks: {
+          color: '#9faec3',
+          callback: v => `${v}%`
+        },
+        grid: { color: 'rgba(159, 174, 195, 0.10)' }
+      };
+      cfgPressure.scales.y = {
+        ticks: { color: '#9faec3' },
+        grid: { color: 'rgba(159, 174, 195, 0.10)' }
+      };
+      chartCoinglassPressure = new Chart(document.getElementById('chartCoinglassPressure'), {
+        type: 'bar',
+        data: {
+          labels: ['Above Current Price', 'Below Current Price'],
+          datasets: [
+            {
+              label: 'Estimated Pressure',
+              data: [Math.round(above * 100), Math.round(below * 100)],
+              backgroundColor: [
+                'rgba(255, 155, 91, 0.70)',
+                'rgba(102, 165, 255, 0.70)'
+              ],
+              borderColor: [
+                'rgba(255, 155, 91, 1)',
+                'rgba(102, 165, 255, 1)'
+              ],
+              borderWidth: 1.2
+            }
+          ]
+        },
+        options: cfgPressure
+      });
     }
 
     function render(snapshot) {
@@ -1245,6 +1393,7 @@
     document.getElementById('tabBtnTruth')?.addEventListener('click', () => switchTab('truth'));
     document.getElementById('tabBtnDarkSide')?.addEventListener('click', () => switchTab('dark'));
     document.getElementById('tabBtnHowWeThink')?.addEventListener('click', () => switchTab('how'));
+    document.getElementById('bridgeToHow')?.addEventListener('click', () => switchTab('how'));
   </script>
 </body>
 </html>
