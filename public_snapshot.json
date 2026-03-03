@@ -1,22 +1,21 @@
 {
   "bot": "OpenSmusse",
   "symbol": "SOLUSDT",
-  "updatedAt": "2026-03-03T22:08:07.390Z",
+  "updatedAt": "2026-03-03T22:28:15.722Z",
   "marketStructure": {
-    "openInterest": "falling",
+    "openInterest": "flat",
     "funding": "neutral",
-    "longShort": "73% long / 27% short",
+    "longShort": "N/A",
     "orderbook": "balanced",
     "liquidations": "balanced"
   },
-  "structuralRead": "Market participation is decreasing, which points to reduced conviction from new positioning. Order flow is balanced, and liquidation pressure remains balanced. Overall, funding is neutral and conditions look relatively calm without strong crowding.",
-  "cottonCandyPocket": "Signals are pulling in different directions here. When structure becomes mixed, experienced traders often simplify instead of forcing interpretation. Not every environment asks for engagement. Restraint is a skill in itself.",
+  "structuralRead": "Market participation is stable, indicating positioning is not expanding meaningfully. Order flow is balanced, and liquidation pressure remains balanced. Overall, funding is neutral and conditions look relatively calm without strong crowding.",
+  "cottonCandyPocket": "Nothing in the current structure stands out enough to deserve commentary. When experienced traders find little to say, it’s often because the market hasn’t earned attention yet.",
   "cottonCandyTemplate": "TOOL_RESTRAINT",
-  "regime": "COMPRESSION",
+  "regime": "UNKNOWN",
   "transitionQuality": "NEUTRAL",
   "history": {
     "timestamps": [
-      "2026-03-03T21:09:07.288Z",
       "2026-03-03T21:10:07.289Z",
       "2026-03-03T21:11:07.290Z",
       "2026-03-03T21:12:07.292Z",
@@ -75,10 +74,10 @@
       "2026-03-03T22:05:07.384Z",
       "2026-03-03T22:06:07.385Z",
       "2026-03-03T22:07:07.388Z",
-      "2026-03-03T22:08:07.390Z"
+      "2026-03-03T22:08:07.390Z",
+      "2026-03-03T22:28:15.720Z"
     ],
     "openInterest": [
-      9577341,
       9578994.67,
       9578332.68,
       9579534.48,
@@ -137,10 +136,10 @@
       9528937.08,
       9526068.54,
       9521203.38,
+      9518126.38,
       9518126.38
     ],
     "price": [
-      84.51,
       84.52,
       84.42,
       84.49,
@@ -199,10 +198,10 @@
       85.50597924,
       85.50063414,
       85.59095352,
+      85.67270487,
       85.67270487
     ],
     "fundingRate": [
-      0.00000861,
       0.00000873,
       0.00000924,
       0.00000943,
@@ -261,10 +260,10 @@
       0.00001251,
       0.00001558,
       0.00001455,
+      0.00001455,
       0.00001455
     ],
     "longRatio": [
-      0.7284,
       0.7284,
       0.7284,
       0.7284,
@@ -323,13 +322,13 @@
       0.726,
       0.726,
       0.7262,
+      0.7262,
       0.7262
     ],
     "shortRatio": [
       0.2716,
       0.2716,
       0.2716,
-      0.2716,
       0.2718,
       0.2718,
       0.2718,
@@ -384,6 +383,7 @@
       0.274,
       0.274,
       0.274,
+      0.2738,
       0.2738,
       0.2738
     ],
