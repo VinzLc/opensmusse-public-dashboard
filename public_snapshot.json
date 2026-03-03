@@ -1,23 +1,21 @@
 {
   "bot": "OpenSmusse",
   "symbol": "SOLUSDT",
-  "updatedAt": "2026-03-03T17:23:06.949Z",
+  "updatedAt": "2026-03-03T17:25:06.951Z",
   "marketStructure": {
     "openInterest": "rising",
-    "funding": "elevated",
+    "funding": "neutral",
     "longShort": "72% long / 28% short",
     "orderbook": "balanced",
     "liquidations": "balanced"
   },
-  "structuralRead": "Market participation is increasing, which suggests fresh positioning is entering the market. Order flow is balanced, and liquidation pressure remains balanced. Overall, funding shows directional crowding, so moves can continue but may become fragile.",
-  "cottonCandyPocket": "Positioning is starting to lean, and that changes how structure is read. When participation crowds in early, it often reduces flexibility rather than increasing opportunity. Experienced traders tend to notice that crowded environments remove options instead of creating them. Clarity usually comes after balance is restored.",
-  "cottonCandyTemplate": "CROWDING_REDUCES_OPTIONALITY",
+  "structuralRead": "Market participation is increasing, which suggests fresh positioning is entering the market. Order flow is balanced, and liquidation pressure remains balanced. Overall, funding is neutral and conditions look relatively calm without strong crowding.",
+  "cottonCandyPocket": "Signals are pulling in different directions here. When structure becomes mixed, experienced traders often simplify instead of forcing interpretation. Not every environment asks for engagement. Restraint is a skill in itself.",
+  "cottonCandyTemplate": "TOOL_RESTRAINT",
   "regime": "COMPRESSION",
   "transitionQuality": "NEUTRAL",
   "history": {
     "timestamps": [
-      "2026-03-03T16:24:06.853Z",
-      "2026-03-03T16:25:06.853Z",
       "2026-03-03T16:26:06.856Z",
       "2026-03-03T16:27:06.858Z",
       "2026-03-03T16:28:06.861Z",
@@ -75,11 +73,11 @@
       "2026-03-03T17:20:06.944Z",
       "2026-03-03T17:21:06.945Z",
       "2026-03-03T17:22:06.947Z",
-      "2026-03-03T17:23:06.949Z"
+      "2026-03-03T17:23:06.949Z",
+      "2026-03-03T17:24:06.949Z",
+      "2026-03-03T17:25:06.951Z"
     ],
     "openInterest": [
-      9708143.9,
-      9681861.8,
       9680024.53,
       9680927.29,
       9678751.17,
@@ -137,11 +135,11 @@
       9543160.55,
       9545319.28,
       9546703.21,
-      9549780.41
+      9549780.41,
+      9551553.66,
+      9553436.4
     ],
     "price": [
-      86.74,
-      87.26857437,
       87.08,
       87.09,
       86.92,
@@ -199,11 +197,11 @@
       84.66602657,
       84.38473521,
       84.50208527,
-      84.92797803
+      84.92797803,
+      84.96304821,
+      84.96329127
     ],
     "fundingRate": [
-      -0.00013196,
-      -0.00013196,
       -0.00013069,
       -0.00012677,
       -0.00012438,
@@ -261,11 +259,11 @@
       -0.00010273,
       -0.00010166,
       -0.00010166,
-      -0.00010138
+      -0.00010138,
+      -0.00010102,
+      -0.00009966
     ],
     "longRatio": [
-      0.7259,
-      0.7259,
       0.7259,
       0.7259,
       0.7258,
@@ -323,13 +321,13 @@
       0.7251,
       0.7251,
       0.7249,
+      0.7249,
+      0.7249,
       0.7249
     ],
     "shortRatio": [
       0.2741,
       0.2741,
-      0.2741,
-      0.2741,
       0.2742,
       0.2742,
       0.2742,
@@ -384,6 +382,8 @@
       0.2749,
       0.2749,
       0.2749,
+      0.2751,
+      0.2751,
       0.2751,
       0.2751
     ],
