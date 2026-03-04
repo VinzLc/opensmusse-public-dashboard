@@ -1,23 +1,21 @@
 {
   "bot": "OpenSmusse",
   "symbol": "SOLUSDT",
-  "updatedAt": "2026-03-04T12:06:25.302Z",
+  "updatedAt": "2026-03-04T12:08:25.304Z",
   "marketStructure": {
     "openInterest": "falling",
     "funding": "elevated",
     "longShort": "61% long / 39% short",
-    "orderbook": "bid-heavy",
+    "orderbook": "ask-heavy",
     "liquidations": "balanced"
   },
-  "structuralRead": "Market participation is decreasing, which points to reduced conviction from new positioning. Order flow is currently bid-heavy, while liquidation pressure remains balanced. Overall, funding shows directional crowding, so moves can continue but may become fragile.",
+  "structuralRead": "Market participation is decreasing, which points to reduced conviction from new positioning. Order flow is currently ask-heavy, while liquidation pressure remains balanced. Overall, funding shows directional crowding, so moves can continue but may become fragile.",
   "cottonCandyPocket": "Positioning is starting to lean, and that changes how structure is read. When participation crowds in early, it often reduces flexibility rather than increasing opportunity. Experienced traders tend to notice that crowded environments remove options instead of creating them. Clarity usually comes after balance is restored.",
   "cottonCandyTemplate": "CROWDING_REDUCES_OPTIONALITY",
   "regime": "CHOP",
   "transitionQuality": "NEUTRAL",
   "history": {
     "timestamps": [
-      "2026-03-03T22:00:07.375Z",
-      "2026-03-03T22:01:07.380Z",
       "2026-03-03T22:02:07.380Z",
       "2026-03-03T22:03:07.380Z",
       "2026-03-03T22:04:07.381Z",
@@ -75,11 +73,11 @@
       "2026-03-04T12:03:25.295Z",
       "2026-03-04T12:04:25.297Z",
       "2026-03-04T12:05:25.300Z",
-      "2026-03-04T12:06:25.302Z"
+      "2026-03-04T12:06:25.302Z",
+      "2026-03-04T12:07:25.303Z",
+      "2026-03-04T12:08:25.304Z"
     ],
     "openInterest": [
-      9554303.05,
-      9553390.37,
       9552396.04,
       9544920.18,
       9529915.76,
@@ -137,11 +135,11 @@
       9784845.54,
       9784674.66,
       9782504.92,
-      9781424.23
+      9781424.23,
+      9782363.39,
+      9785436.47
     ],
     "price": [
-      85.1,
-      85.14,
       85.12,
       85.59520365,
       85.78370168,
@@ -199,11 +197,11 @@
       89.68,
       89.78,
       89.75056095,
-      89.78
+      89.78,
+      89.55072781,
+      89.56428907
     ],
     "fundingRate": [
-      0.00001165,
-      0.00001117,
       0.00001091,
       0.00001099,
       0.00001099,
@@ -261,11 +259,11 @@
       0.0001,
       0.0001,
       0.0001,
+      0.0001,
+      0.0001,
       0.0001
     ],
     "longRatio": [
-      0.7264,
-      0.726,
       0.726,
       0.726,
       0.726,
@@ -323,11 +321,11 @@
       0.6067,
       0.6067,
       0.6067,
-      0.6067
+      0.6067,
+      0.6063,
+      0.6063
     ],
     "shortRatio": [
-      0.2736,
-      0.274,
       0.274,
       0.274,
       0.274,
@@ -385,7 +383,9 @@
       0.3933,
       0.3933,
       0.3933,
-      0.3933
+      0.3933,
+      0.3937,
+      0.3937
     ],
     "liquidationLong": [
       0,
